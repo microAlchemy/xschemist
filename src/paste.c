@@ -293,6 +293,7 @@ static void merge_inst(int k,FILE *fd)
       read_line(fd, 0);
       return;
     }
+    uuid_generate_random(xctx->inst[i].uuid);
     xctx->inst[i].sel=0;
     xctx->inst[i].color=-10000;
     xctx->inst[i].ptr=-1;

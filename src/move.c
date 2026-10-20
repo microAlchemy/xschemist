@@ -963,6 +963,7 @@ void copy_objects(int what)
         xctx->inst[xctx->instances].y0 = xctx->ry1+xctx->deltay;
         set_first_sel(ELEMENT, xctx->instances, 0);
         xctx->inst[xctx->instances].sel = SELECTED;
+        uuid_generate_random(xctx->inst[xctx->instances].uuid);
         xctx->inst[xctx->instances].rot = (xctx->inst[xctx->instances].rot + ( (xctx->move_flip &&
            (xctx->inst[xctx->instances].rot & 1) ) ? xctx->move_rot+2 : xctx->move_rot) ) & 0x3;
         xctx->inst[xctx->instances].flip = (xctx->move_flip? !xctx->inst[n].flip:xctx->inst[n].flip);

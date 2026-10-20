@@ -1632,6 +1632,7 @@ int place_symbol(int pos, const char *symbol_name, double x, double y, short rot
   xctx->inst[n].node=NULL;
   xctx->inst[n].prop_ptr=NULL;
   xctx->inst[n].instname=NULL;
+  uuid_generate_random(xctx->inst[n].uuid);
   dbg(1, ("place_symbol() :all inst_ptr members set\n"));  /*  03-02-2000 */
   if(inst_props) {
     new_prop_string(n, inst_props, tclgetboolvar("disable_unique_names")); /*  20171214 first_call */

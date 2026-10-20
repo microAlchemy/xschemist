@@ -78,7 +78,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-
+#include <uuid/uuid.h>
 #include <fcntl.h>
 #include <time.h>
 
@@ -615,6 +615,7 @@ typedef struct
 typedef struct
 {
   char *name;/*  symbol name (ex: devices/lab_pin)  */
+  uuid_t uuid; /* uuid value */
   int ptr;   /*  was a pointer formerly... */
   double x0;  /* symbol origin / anchor point */
   double y0;

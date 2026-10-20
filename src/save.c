@@ -3076,6 +3076,11 @@ static void save_inst(FILE *fd, int select_only)
   } else {
     save_ascii_string(inst[i].name, fd, 0);
   }
+
+  char uuid_str[37];
+  uuid_unparse(inst[i].uuid, uuid_str);
+  fprintf(fd, " uuid=%s", uuid_str);
+
   fprintf(fd, " %.16g %.16g %hd %hd ",inst[i].x0, inst[i].y0, inst[i].rot, inst[i].flip );
   save_ascii_string(inst[i].prop_ptr,fd, 1);
   if(ptr >= 0 && embedded_saved && !embedded_saved[ptr] && inst[i].embed) {
@@ -3333,6 +3338,7 @@ static void load_inst(int k, FILE *fd)
       info("WARNING: missing fields for INSTANCE object, ignoring.\n");
       read_line(fd, 0);
     } else {
+      uuid_generate_random(xctx->inst[i].uuid);
       xctx->inst[i].color=-10000;
       xctx->inst[i].sel=0;
       xctx->inst[i].ptr=-1; /*04112003 was 0 */
@@ -6029,6 +6035,11 @@ void save_selection(int what)
      case ELEMENT:
       fprintf(fd, "C ");
       save_ascii_string(xctx->inst[n].name,fd, 0);
+
+      char uuid_str[37];
+      uuid_unparse(xctx->inst[n].uuid, uuid_str);
+      fprintf(fd, " uuid=%s", uuid_str);
+
       fprintf(fd, " %.16g %.16g %hd %hd ",xctx->inst[n].x0, xctx->inst[n].y0,
         xctx->inst[n].rot, xctx->inst[n].flip );
       save_ascii_string(xctx->inst[n].prop_ptr,fd, 1);
